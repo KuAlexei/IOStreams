@@ -8,11 +8,12 @@ public class FindKeywords {
     private WordsCollector wordsCollector = new WordsCollector();
 
     public void checkFile(String fileName) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(fileName));
-        String line = br.readLine();
-        while (line != null) {
-            wordsCollector.processLine(line);
-            line = br.readLine();
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line = br.readLine();
+            while (line != null) {
+                wordsCollector.processLine(line);
+                line = br.readLine();
+            }
         }
     }
 
